@@ -10,9 +10,12 @@
 
 package collection;
 
-/**
+import java.util.*;
+
+/*
  * StudentRoster A Student Roster App. This app collects student IDs for a
  * school attendance system.
+ /**
  * <p>
  * The app contains a String[] array to represent the id names of all the
  * students in a class room. This array should be converted to a valid
@@ -32,6 +35,7 @@ package collection;
 public class StudentRoster {
 
 	String[] students = { "JOHND9824", "KIML2794", "LUISM3262", "JENP8319", "JEFFN1092", "DIANER9216" };
+	HashSet<String> hs;
 
 	/**
 	 * Here is a basic test or application logic that should be performed on the
@@ -44,7 +48,14 @@ public class StudentRoster {
 		sr.displayElements();
 		// Add and remove few elements to the collection
 		sr.addElement("KATL2943");
+		sr.displayElements();
+
+		sr.addElement("KATL2943");
+		sr.displayElements();
+
 		sr.removeElement("KATL2943");
+		sr.displayElements();
+
 		// Use a staic method version to view elements
 		displayElements(sr);
 	}
@@ -59,6 +70,8 @@ public class StudentRoster {
 		// Provide logic to view elements in collection for TrendingTags
 		// instance
 
+		sr.displayElements();
+
 	}
 
 	/**
@@ -67,6 +80,8 @@ public class StudentRoster {
 	private void displayElements() {
 		// Provide logic to view elements for instance
 
+		System.out.println("There are " + hs.size() + " no of students");
+		System.out.println(hs);
 	}
 
 	/**
@@ -75,20 +90,36 @@ public class StudentRoster {
 	public StudentRoster() {
 		// Either overload this class or make this default default constructor
 		// interactive.
+		System.out.println("Welcome to Student Applicaton");
+		hs = new HashSet<String>();
+		hs.addAll(Arrays.asList(students));
+
 	}
 
 	/**
 	 * Method to add an element
 	 */
-	public void addElement(String... val) {
+	public void addElement(String val) {
 		// provide logic to add an element
+		if (hs.contains(val)) {
+			System.out.println("Duplicate student record : " + val);
+		} else {
+			hs.add(val);
+			System.out.println("Added student record successfully: " + val);
+		}
 	}
 
 	/**
 	 * Method to remove an element
 	 */
-	public void removeElement(String... val) {
+	public void removeElement(String val) {
 		// provide logic to remove an element
+
+		if (hs.contains(val)) {
+			hs.remove(val);
+			System.out.println("Removed student " + val);
+		} else
+			System.out.println("Student doesnot exist : " + val);
 	}
 
 }

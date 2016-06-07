@@ -10,6 +10,8 @@
 
 package collection;
 
+import java.util.*;
+
 /**
  * ShoppingCartApp A Shopping Cart type app. This app collects items while you
  * are browsing an online store to be later checked out for processing.
@@ -33,20 +35,28 @@ package collection;
 public class ShoppingCartApp {
 
 	String[] items = { "LAPTOP0217", "LAMPO3982", "CANDY3984", "JAVA9083", "SQASOL9845", "VACAT9845" };
+	ArrayList<String> itemsArrayList;
 
 	/**
 	 * Here is a basic test or application logic that should be performed on the
 	 * collection
 	 */
-	public static void main(String[] gs) {
+	public static void main(String[] args) {
 		// Create Simulation instance
 		ShoppingCartApp cart = new ShoppingCartApp();
 		// Display Elements
+		System.out.println("initial list:");
 		cart.displayElements();
 		// Add and remove few elements to the collection
 		cart.addElement("MEDIC2541");
+		cart.displayElements();
 		cart.removeElement("MEDIC2541");
-		// Use a staic method version to view elements
+		cart.displayElements();
+		cart.removeElement("Sashi");
+		cart.addElement("Sashi");
+		cart.addElement("Sashi");
+		cart.displayElements();
+		// Use a static method version to view elements
 		displayElements(cart);
 	}
 
@@ -59,7 +69,7 @@ public class ShoppingCartApp {
 	public static void displayElements(ShoppingCartApp cart) {
 		// Provide logic to view elements in collection for TrendingTags
 		// instance
-
+		cart.displayElements();
 	}
 
 	/**
@@ -68,28 +78,55 @@ public class ShoppingCartApp {
 	private void displayElements() {
 		// Provide logic to view elements for instance
 
+		int length = itemsArrayList.size();
+
+		for (int i = 0; i < length; i++) {
+			System.out.println("Item " + i + " : " + itemsArrayList.get(i));
+
+		}
+		System.out.println("---------");
+
 	}
 
 	/**
 	 * Default constructor
 	 */
+
 	public ShoppingCartApp() {
 		// Either overload this class or make this default default constructor
 		// interactive.
+		System.out.println("Welcome to Shopping Cart Application");
+		itemsArrayList = new ArrayList<String>();
+		// itemsArrayList.addAll(Arrays.asList(items));
+		// initializing with data from items arrray
+		for (int i = 0; i < items.length; i++) {
+			itemsArrayList.add(items[i]);
+		}
+
 	}
 
 	/**
 	 * Method to add an element
 	 */
-	public void addElement(String... val) {
+	public void addElement(String val) {
 		// provide logic to add an element
+		itemsArrayList.add(val);
+		System.out.println("Added an element successfully : " + val);
 	}
 
 	/**
 	 * Method to remove an element
 	 */
-	public void removeElement(String... val) {
+	public void removeElement(String val) {
 		// provide logic to remove an element
+
+		if (itemsArrayList.contains(val)) {
+			int index = itemsArrayList.indexOf(val);
+			itemsArrayList.remove(index);
+			System.out.println("Successfully removed the item :" + val);
+		} else {
+			System.out.println("Item not present in the array list: " + val);
+		}
 	}
 
 }

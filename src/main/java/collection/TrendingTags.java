@@ -10,6 +10,8 @@
 
 package collection;
 
+import java.util.*;
+
 /**
  * TrendingTags A Twitter type software. This software captures popular tags and
  * collects the top ten most popular words.
@@ -33,6 +35,8 @@ public class TrendingTags {
 
 	String[] words = { "Money", "SQA", "Solutions", "Java", "Learn", "Collections" };
 
+	private LinkedList<String> llist;
+
 	/**
 	 * Here is a basic test or application logic that should be performed on the
 	 * collection
@@ -44,7 +48,16 @@ public class TrendingTags {
 		tags.displayElements();
 		// Add and remove few elements to the collection
 		tags.addElement("Testing");
+		tags.displayElements();
+
+		tags.addElement("Testing");
+		tags.displayElements();
+
+		tags.removeElement("Sashi");
+
 		tags.removeElement("Testing");
+		tags.displayElements();
+
 		// Use a staic method version to view elements
 		displayElements(tags);
 	}
@@ -58,6 +71,7 @@ public class TrendingTags {
 	public static void displayElements(TrendingTags tags) {
 		// Provide logic to view elements in collection for TrendingTags
 		// instance
+		tags.displayElements();
 
 	}
 
@@ -66,7 +80,7 @@ public class TrendingTags {
 	 */
 	private void displayElements() {
 		// Provide logic to view elements for instance
-
+		System.out.println(llist);
 	}
 
 	/**
@@ -75,20 +89,37 @@ public class TrendingTags {
 	public TrendingTags() {
 		// Either overload this class or make this default default constructor
 		// interactive.
+
+		System.out.println("Welcome to Trending Tags system");
+		llist = new LinkedList<String>();
+
+		llist.addAll(Arrays.asList(words));
+
 	}
 
 	/**
 	 * Method to add an element
 	 */
-	public void addElement(String... val) {
+	public void addElement(String val) {
 		// provide logic to add an element
+
+		llist.add(val);
+		System.out.println("Added a new tag: " + val);
+
 	}
 
 	/**
 	 * Method to remove an element
 	 */
-	public void removeElement(String... val) {
+	public void removeElement(String val) {
 		// provide logic to remove an element
+
+		if (llist.contains(val)) {
+			llist.remove(val);
+			System.out.println("Removed tag " + val);
+		} else
+			System.out.println("Such a tag doesnot exist : " + val);
+
 	}
 
 }

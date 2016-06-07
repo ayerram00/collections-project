@@ -10,6 +10,8 @@
 
 package collection;
 
+import java.util.*;
+
 /**
  * MediaManager A Media Manger Software. This software collects media for a
  * video rental store.
@@ -31,6 +33,7 @@ package collection;
 public class MediaManager {
 
 	String[] media = { "LAPTOP0217", "LAMPO3982", "CANDY3984", "JAVA9083", "SQASOL9845", "VACAT9845" };
+	private TreeSet<String> tset;
 
 	/**
 	 * Here is a basic test or application logic that should be performed on the
@@ -43,7 +46,15 @@ public class MediaManager {
 		mediaManager.displayElements();
 		// Add and remove few elements to the collection
 		mediaManager.addElement("MEDIC2541");
+		mediaManager.displayElements();
+
+		mediaManager.addElement("MEDIC2541");
+
 		mediaManager.removeElement("MEDIC2541");
+		mediaManager.displayElements();
+
+		mediaManager.removeElement("MEDIC2541");
+
 		// Use a staic method version to view elements
 		displayElements(mediaManager);
 	}
@@ -58,6 +69,7 @@ public class MediaManager {
 		// Provide logic to view elements in collection for TrendingTags
 		// instance
 
+		mediaManager.displayElements();
 	}
 
 	/**
@@ -66,6 +78,8 @@ public class MediaManager {
 	private void displayElements() {
 		// Provide logic to view elements for instance
 
+		System.out.println("There are currently " + tset.size() + " no of elements:");
+		System.out.println(tset);
 	}
 
 	/**
@@ -74,20 +88,37 @@ public class MediaManager {
 	public MediaManager() {
 		// Either overload this class or make this default default constructor
 		// interactive.
+
+		System.out.println("Welcome to Media Manager system");
+		tset = new TreeSet<String>();
+
+		tset.addAll(Arrays.asList(media));
 	}
 
 	/**
 	 * Method to add an element
 	 */
-	public void addElement(String... val) {
+	public void addElement(String val) {
 		// provide logic to add an element
+		if (tset.contains(val)) {
+			System.out.println("Duplicate media : " + val);
+		} else {
+			tset.add(val);
+			System.out.println("Added a new media: " + val);
+		}
+
 	}
 
 	/**
 	 * Method to remove an element
 	 */
-	public void removeElement(String... val) {
+	public void removeElement(String val) {
 		// provide logic to remove an element
-	}
+		if (tset.contains(val)) {
+			tset.remove(val);
+			System.out.println("Removed media " + val);
+		} else
+			System.out.println("Media doesnot exist : " + val);
 
+	}
 }

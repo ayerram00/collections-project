@@ -10,8 +10,7 @@
 
 package collection;
 
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.*;
 
 /**
  * VideoGameApp A video game with basic functions. The video game contains
